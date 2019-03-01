@@ -33,7 +33,7 @@ def passlist_1(password , len_pass) :
             random_choice = random.choice(characters)
             password_characters += random_choice
         if password_characters not in password_list :
-            if len(password_characters) < len_of_password + 1 :
+            if len(password_characters) == len_pass :
                 password_list.append(password_characters)
             password_characters = ""
         if len(password_list) == len_of_password ** len_pass :
@@ -59,8 +59,8 @@ print("[+] { %s } Passwords Can Build [+]" % (sum_of_password))
 ask = input("Continue [ Y / N ] : ")
 if ask == "Y" or ask == "y" :
     if min_ == max_ :
-        password_list = passlist(string)
-        file = open(filename , "+w")
+        password_list = passlist(string , min_)
+        file = open(filename , "+a")
         for i in password_list :
             file.write(i + "\n")
         file.close()
@@ -73,7 +73,7 @@ if ask == "Y" or ask == "y" :
         size = os.path.getsize(filename)
         print("Size : {",size,"} Bytes")
     else :
-        file = open(filename , '+w')
+        file = open(filename , '+a')
         for i in range(min_ , max_ + 1) :
             password_list = passlist_1(string , i)
             for i in password_list :
