@@ -5,21 +5,21 @@ import sys
 import string
 import winsound
 import strings
-def passlist(password) :
+def passlist(password , len_pass) :
     characters = list(password)
     len_of_password = len(password)
     max_range_of_password = len_of_password ** len_of_password ** len_of_password
     password_list = []
     password_characters = ""
     for i in range(max_range_of_password) :
-        for j in range(len_of_password) :
+        for j in range(len_pass) :
             random_choice = random.choice(characters)
             password_characters += random_choice
-        if password_characters not in password_list :
-            if len(password_characters) < len_of_password + 1 :
-                password_list.append(password_characters)
-            password_characters = ""
-        if len(password_list) == len_of_password ** len_of_password :
+            if len(password_characters) == len_pass :
+                if password_characters not in password_list :
+                    password_list.append(password_characters)
+                password_characters = ""
+        if len(password_list) == len_of_password ** len_pass :
             return password_list
             break
 def passlist_1(password , len_pass) :
